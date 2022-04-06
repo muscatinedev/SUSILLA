@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'food',
     'recipes',
+    'main',
 
 ]
 
@@ -79,18 +80,36 @@ STATIC_ROOT = '../static'
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
+
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+"""
+
+
+
+
+
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'amana',
+        'NAME': 'swatdb',
         'USER': 'matte',
         'PASSWORD': 'cigulo',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

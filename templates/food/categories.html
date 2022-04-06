@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}My f{% endblock %}
+{% block content %}
+
+<H2 class="center-block">listing Categories</H2>
+<div class="list-group">
+    {% for c in  object_list %}
+        <div class="list-group-item">
+            {{c.name}}
+        </div>
+    {% endfor %}
+
+</div>
+
+
+
+
+
+
+{% endblock %}

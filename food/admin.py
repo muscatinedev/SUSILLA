@@ -7,10 +7,10 @@ from .models import Ingredient, Category
 class CategoryAdmin(admin.ModelAdmin):
     list_display = [
         'name',
-        'slug',
+
 
     ]
-    prepopulated_fields = {'slug': ('name',)}
+
 
 
 @admin.register(Ingredient)
@@ -24,7 +24,7 @@ class IngredientAdmin(admin.ModelAdmin):
         'proteine',
         'lipidi',
         'amido',
-        'slug',
+
 
     ]
-    prepopulated_fields = {'slug': ('name',)}
+

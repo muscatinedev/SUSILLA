@@ -9,7 +9,7 @@ app_name='recipes'
 urlpatterns = [
     path('', recipe_list_view, name='recipes-list'),
     path('<int:id>/', recipe_detail_view, name='recipes-detail'),
-    path('create', recipe_create_view, name='recipes-create'),
+    path('create/', recipe_create_view, name='recipes-create'),
     path('<int:id>/edit/', recipe_update_view, name='recipes-edit'),
     ]
 

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login Page{% endblock %}
+{% block content %}
+{% if  request.user.is_authenticated %}
+<div style="margin-top:30px">
+    <form method="post">{% csrf_token%}
+
+        <P style="color:greenyellow">logout?</P>
+
+
+        <button type="submit">Logout</button>
+    </form>
+</div>
+{% else %}
+<a href="/login">Login</a>
+
+
+{% endif%}
+
+
+
+
+
+
+
+{% endblock content %}

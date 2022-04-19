@@ -1,11 +1,100 @@
-{% extends "base.html" %}
 
+{% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<div class="container-fluid">
 
-<h1>{{ object.name }}</h1>
-<p>Author {{ object.user.username }}
- {{ form }}
+    <h1 class="intro">{{ object.name }}</h1>
+    <p>Author {{ object.user.username }}
 
 
+    <form  action="." method="POST" hx-post='.'>
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-sm-4">
+
+                {{form.name.label}}
+                {{form.name}}
+
+
+
+                {{form.description.label}}
+                {{form.description}}
+
+
+
+
+
+        </div>
+        <div class="col-sm-8">
+
+            {% for field in form %}
+            <div class='{% if field.field.required %}{{form.required_css_class}}{% endif %}'>
+                <!--            {{ field.errors }}-->
+                <!--            {{ field.label }}-->
+                <!--            {{ field }}-->
+            </div>
+
+            {% endfor %}
+
+
+            {% if formset %}
+            <h3>Ingredients</h3>
+
+            {{formset.management_form }}
+            <div id="ingredient-form-list">
+                {% for form in formset %}
+                {% csrf_token %}
+                <div class="ingredient-form">
+                    {{ form.as_p }}
+                </div>
+
+                {% endfor %}
+            </div>
+
+            <div id="empty-form" class="">
+                {{formset.empty_form}}
+            </div>
+
+
+            <button  id="add-more" style="margin-top: 10px;" type="button" >Add More</button>
+            {% endif %}
+            <button style="margin-top: 10px;" type="submit" class="btn-success" hx-trigger="click" >save</button>
+            <button hx-post="/clicked"
+
+                    hx-target="#parent-div"
+                    hx-swap="outerHTML">
+                Click Me!
+            </button>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="{% static '/js/recipe.js' %}"></script>
     {% endblock content %}
+
+</div>
+
+

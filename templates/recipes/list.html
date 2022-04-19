@@ -6,20 +6,12 @@
 <H2 class="center-block">listing r</H2>
 <div class="btn btn-default">
     <a href="{% url 'recipes:recipes-create' %}">Create</a>
+    <hr/>
+    {% for x in object_list %}
+    <div class='mb-3'>
+        <a class='lead' href='{{ x.get_absolute_url }}'>{{ x.name }}</a>
 
-</div>
+    </div>
+    {% endfor %}
 
-<hr/>
-{% for x in object_list %}
-<div class='mb-3'>
-
-    <a class='lead' href='{{ x.get_absolute_url }}'>{{ x.name }}</a>
-
-</div>
-{% endfor %}
-
-
-
-
-
-{% endblock %}
+    {% endblock content %}

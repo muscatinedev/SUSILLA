@@ -49,7 +49,8 @@ INSTALLED_APPS = [
 ROOT_URLCONF = 'urls'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static", "./static",
+    BASE_DIR / "static",
+    '/var/www/static/',
 
 ]
 

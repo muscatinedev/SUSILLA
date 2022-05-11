@@ -28,4 +28,6 @@ urlpatterns = [
     path('', include('main.urls', namespace='main')),
     path('food/', include('food.urls', namespace='food')),
     path('recipes/', include('recipes.urls', namespace='recipes')),
+    path('events/', include('events.urls', namespace='events')),
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

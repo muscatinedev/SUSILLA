@@ -3,15 +3,16 @@
 {% block title %}My f{% endblock %}
 {% block content %}
 
-<H2 class="center-block">listing r</H2>
-<div class="btn btn-default">
-    <a href="{% url 'recipes:recipes-create' %}">Create</a>
-    <hr/>
+<H1>My Recipes </H1>
+
+    <a  href="{% url 'recipes:recipes-create' %}">Create</a>
+
+
+<ul>
     {% for x in object_list %}
-    <div class='mb-3'>
-        <a class='lead' href='{{ x.get_absolute_url }}'>{{ x.name }}</a>
-
-    </div>
+        {% if   x.name %}
+            <li>  <a  href='{{ x.get_absolute_url }}'>{{ x.name }}</a> </li>
+        {% endif %}
     {% endfor %}
-
-    {% endblock content %}
+</ul>
+{% endblock content %}

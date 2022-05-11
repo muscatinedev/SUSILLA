@@ -1,100 +1,65 @@
+{% extends "base.html" %}{% load static %}
 
-{% extends "base.html" %}
-{% load static %}
+
 
 {% block content %}
-<div class="container-fluid">
 
-    <h1 class="intro">{{ object.name }}</h1>
-    <p>Author {{ object.user.username }}
+{% if message %}
+<p>{{message}}</p>
+{% endif %}
 
-
-    <form  action="." method="POST" hx-post='.'>
+<div style="margin-top: 30px">
+    <form action="." method="POST">
         {% csrf_token %}
-    <div class="row">
-        <div class="col-sm-4">
+        {{form.as_p}}
 
-                {{form.name.label}}
-                {{form.name}}
-
-
-
-                {{form.description.label}}
-                {{form.description}}
-
-
-
-
+        {% if formset %}
+        <H4>Ingredients<button type="button" class="btn btn-large btn-inverse">+</button></H4>
+        {{formset}}
+        <div id='empty-form' class="hidden" >
+            {{ formset.empty_form }}
 
         </div>
-        <div class="col-sm-8">
 
-            {% for field in form %}
-            <div class='{% if field.field.required %}{{form.required_css_class}}{% endif %}'>
-                <!--            {{ field.errors }}-->
-                <!--            {{ field.label }}-->
-                <!--            {{ field }}-->
+
+        {% endif %}
+
+        </br>
+        <div class="float-right">
+            <div class="btn-group  " style="margin-top: 10px; margin-right: 0px;">
+                <a href="{% url 'recipes:recipes-list'  %}" class="btn btn-info" >
+                    Cancel
+                </a>
+                <button class="btn btn-success"  type="submit">
+                    Save Recipe
+                </button>
             </div>
-
-            {% endfor %}
-
-
-            {% if formset %}
-            <h3>Ingredients</h3>
-
-            {{formset.management_form }}
-            <div id="ingredient-form-list">
-                {% for form in formset %}
-                {% csrf_token %}
-                <div class="ingredient-form">
-                    {{ form.as_p }}
-                </div>
-
-                {% endfor %}
-            </div>
-
-            <div id="empty-form" class="">
-                {{formset.empty_form}}
-            </div>
-
-
-            <button  id="add-more" style="margin-top: 10px;" type="button" >Add More</button>
-            {% endif %}
-            <button style="margin-top: 10px;" type="submit" class="btn-success" hx-trigger="click" >save</button>
-            <button hx-post="/clicked"
-
-                    hx-target="#parent-div"
-                    hx-swap="outerHTML">
-                Click Me!
-            </button>
-
-
         </div>
-    </div>
-
-
-
-
-
 
 
     </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <script src="{% static '/js/recipe.js' %}"></script>
-    {% endblock content %}
-
 </div>
+
+<script            src="https://code.jquery.com/jquery-3.6.0.min.js"
+                   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                   crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous" defer></script>
+
+
+
+
+<script >
+
+    $(function() {
+        console.log( "e!" );
+        alert('rrrr');
+    });
+
+</script>
+{% endblock content %}
+
 
 

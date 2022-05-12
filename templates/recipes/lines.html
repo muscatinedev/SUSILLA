@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+ {% for line in lines %}
+<div class="card">
+ <div class="card-title">
+  {{line.name}}
+ </div>
+ <div class="card-body">
+  <strong>Ingredienti: </strong>
+  {% for ing in line.lineingredient_set.all %}
+  {{ing.ingredient.name}} -  {{ing.quantity_as_float}}
+  {% endfor %}
+ </div>
+
+</div>
+
+
+
+{% endfor %}
+
+{% endblock content %}

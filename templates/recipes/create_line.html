@@ -1,0 +1,51 @@
+{% extends "base.html" %}{% load static %}
+
+
+
+{% block content %}
+
+{% if message %}
+<p>{{message}}</p>
+{% endif %}
+
+<div style="margin-top: 30px">
+  <form action="." method="POST" >
+    {% csrf_token %}
+    {{form.as_p}}
+
+
+
+    </br>
+    <div class="float-right">
+      <div class="btn-group  " style="margin-top: 10px; margin-right: 0px;">
+        <a href="{% url 'recipes:recipes-list'  %}" class="btn btn-info" >
+          Cancel
+        </a>
+        <button class="btn btn-success"  type="submit">
+          Save Recipe
+        </button>
+      </div>
+    </div>
+
+
+
+
+
+
+  </form>
+
+</div>
+
+<script            src="https://code.jquery.com/jquery-3.6.0.min.js"
+                   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                   crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous" defer></script>
+
+
+
+{% endblock content %}
+
+
+

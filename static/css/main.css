@@ -5,6 +5,12 @@
     display: none;
 
 }
+
+.spacingbutt{
+    margin: 4px;
+
+}
+
 .ingredient-form {
     border-bottom: 1px solid crimson;
 

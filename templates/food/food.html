@@ -2,8 +2,27 @@
 {% load static %}
 {% block title %}My f{% endblock %}
 {% block content %}
+<h2>Food Management Page</h2>
+<br>
+<a href="{% url 'food:ingredient-create' %}" class="btn btn-warning">New Ingredient</a>
+<p >
+    {% for cate in categories %}
 
-fff
+    <a href="{% url 'food:category-datail' cate.id %}">
+
+        {{cate.name}}
+    </a>
+
+
+
+
+
+
+
+    {% endfor %}
+</p>
+
+
 
 {% endblock %}
 

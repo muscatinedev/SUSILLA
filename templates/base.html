@@ -28,7 +28,7 @@
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/admin/">admin</a>
+                        <a class="nav-link" href="{% url 'food:foodmain'  %}">Food</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'recipes:recipes-list'  %}">Recipes</a>
@@ -69,6 +69,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://127.0.0.1:8000/admin/">admin</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login'  %}">login</a>
                     </li>

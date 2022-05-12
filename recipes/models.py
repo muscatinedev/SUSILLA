@@ -56,9 +56,6 @@ class LineIngredient(models.Model):
     recipeLine = models.ForeignKey(RecipeLine, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
 
-
-
-
     quantity_as_float = models.FloatField(blank=True, null=True)
     # pounds, lbs, oz, gram, etc
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)

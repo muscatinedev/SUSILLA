@@ -13,7 +13,9 @@
                 <small>
                     <a href="{{ object.get_edit_url }}">edit</a>
                 </small>
-
+            <small>
+                <a href="{% url 'recipes:recipe-lines' object.id  %}">Lines</a>
+            </small>
         </h5>
 
     </div>
@@ -30,6 +32,8 @@
             {% endfor %}
         </Ul>
         {% endif %}
+        <strong>Procedimento</strong>
+        {{object.directions}}
 
     </div>
 

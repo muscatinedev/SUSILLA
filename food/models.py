@@ -8,6 +8,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'categories'
+        ordering = ('name',)
 
     def __str__(self):
         return self.name
@@ -22,11 +23,20 @@ class Ingredient(models.Model):
     proteine = models.FloatField(null=True, default=0)
     lipidi = models.FloatField(null=True, default=0)
     amido = models.FloatField(null=True, default=0)
+    active= models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = 'ingredients'
         ordering = ('name',)
 
+    def __str__(self):
+        return self.name
+
+
+class IngredientStock(models.Model):
+    quantity_as_float = models.FloatField(blank=True, null=True)
+    min_quantity_as_float = models.FloatField(blank=True, null=True)
+    ingredient = models.OneToOneField(Ingredient, related_name='ingredients', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name

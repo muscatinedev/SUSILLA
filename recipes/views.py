@@ -4,8 +4,8 @@ from django.urls import reverse
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render, get_object_or_404
 
-from .forms import RecipeForm, RecipeIngredientForm
-from .models import Recipe, RecipeIngredient
+from .forms import RecipeForm, RecipeIngredientForm, RecipeLineForm
+from .models import Recipe, RecipeIngredient, RecipeLine
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
@@ -88,3 +88,26 @@ def recipe_update_view(request, id=None):
         # obj.save()
         return redirect(obj.get_absolute_url())
     return render(request, "recipes/create-update.html", context)
+
+def line_create_view(request):
+    form = RecipeLineForm(request.POST or None)
+    context = {
+        "form": form
+    }
+    if form.is_valid():
+        obj = form.save(commit=False)
+
+        obj.save()
+        #return redirect(obj.get_absolute_url())
+    return render(request, "recipes/create_line.html", context)
+
+def recipe_line_view(request, id=None):
+    recipe = get_object_or_404(Recipe, pk=id )
+    lines= RecipeLine.objects.filter(recipe=recipe)
+    context = {
+        "recipe": recipe,
+        "lines":lines
+    }
+
+    print(lines)
+    return render(request, "recipes/lines.html", context)

@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import admin
 
 # Register your models here.
-from .models import RecipeIngredient, Recipe
+from .models import RecipeIngredient, Recipe, LineIngredient, RecipeLine
 
 User = get_user_model()
 
@@ -21,3 +21,5 @@ class RecipeAdmin(admin.ModelAdmin):
     raw_id_fields = ['user']
 
 admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(RecipeLine )
+admin.site.register(LineIngredient )

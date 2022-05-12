@@ -1,18 +1,33 @@
 import time
 import pint
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import   ListView
 from django.views.generic.detail import DetailView
 import openpyxl
 from openpyxl import Workbook, load_workbook
 from food.models import Category, Ingredient
-from .forms import IngredientForm
+from .forms import IngredientForm, StockForm
+
 
 class CategoryListView(ListView):
     model = Category
     template_name = 'food/categories.html'
 
+
+def food_main_view(request):
+    categories = Category.objects.all()
+    context ={'categories': categories}
+    return render(request, 'food/food.html', context)
+
+def category_detail_view(request, id):
+    obj = get_object_or_404(Category, pk=id)
+    ings= Ingredient.objects.filter(category=obj)
+
+    context = {    "object": obj,
+                   'ings':ings, }
+
+    return render(request, "food/category_detail.html", context)
 
 
 
@@ -72,14 +87,19 @@ def imping(request):
 
 
 
-def food_main_view(request):
-    return render(request, 'food/food.html', {})
 
 
 def createCategory(request):
     return render(request, 'food/food.html', {})
 
 def createIngredient(request):
-    form = IngredientForm()
+    form = IngredientForm(request.POST or None)
+    form2= StockForm(request.POST or None)
+    if form.is_valid() and form2.is_valid():
+        obj = form.save(commit=False)
+        obj2 = form2.save(commit=False)
+        obj2.ingredient = obj
+        obj.save()
+        obj2.save()
 
-    return render(request, 'food/create_ing.html', {'form': form})
+    return render(request, 'food/create_ing.html', {'form': form, 'form2':form2})

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+</br>
+
+
+<div class="card" >
+  <div class="card-title">
+    <h5>
+      {{ object.name }}
+
+    </h5>
+  </div>
+  {% for ing in ings %}
+
+  {{ing}}<hr>
+
+
+  {% endfor %}
+</div>
+  {% endblock content %}

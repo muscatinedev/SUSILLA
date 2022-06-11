@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Ingredient, Category
+from .models import Ingredient, Category, IngredientStock
 
 
 @admin.register(Category)
@@ -28,3 +28,4 @@ class IngredientAdmin(admin.ModelAdmin):
 
     ]
 
+admin.site.register(IngredientStock )

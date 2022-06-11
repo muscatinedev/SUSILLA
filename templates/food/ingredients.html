@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}My f{% endblock %}
+{% block content %}
+
+  {% for cate in categories %}
+
+  <a href="{% url 'food:category-datail' cate.id %}">
+
+    {{cate.name}}
+  </a>
+{% endfor %}
+<p >
+<H2 class="center-block">listing i</H2>
+<div class="list-group">
+  {% for ing in  ingredients %}
+  <div class="list-group-item">
+    {{ing.name}} -> in stock:{{ing.stock.quantity_as_float}}
+  </div>
+  {% endfor %}
+
+</div>
+
+
+
+
+
+
+{% endblock %}

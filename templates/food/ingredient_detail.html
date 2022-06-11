@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    </br>
+
+    <div class="card" >
+        <div class="card-title">
+            <h5> {{ object.name }}</h5>
+        </div>
+        <div class="card-body">
+            {{ object.stock.quantity_as_float }}
+        </div>
+    </div>
+
+{% endblock content %}

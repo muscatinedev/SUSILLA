@@ -10,17 +10,18 @@ from .models import Recipe, RecipeIngredient
 you can reneder fiel not i the model es calculation
 """
 class RecipeForm(forms.ModelForm):
-    # required_css_class = 'required-field'
+   
     name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control",
                                                          "placeholder": "Recipe Name"}))
     directions = forms.CharField(widget=forms.Textarea(attrs={
         "class": "form-control" ,"rows": 6, "placeholder": "Directions"}))
     description = forms.CharField(widget=forms.Textarea(attrs={
         "class": "form-control" ,"rows": 3, "placeholder": "Description"}))
+    active = forms.BooleanField( required=False)
 
     class Meta:
         model = Recipe
-        fields = ['name', 'description', 'directions', 'servings']
+        fields = ['name', 'description', 'directions', 'servings', 'active']
     #
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)

@@ -31,7 +31,7 @@
                         <a class="nav-link" href="{% url 'food:foodmain'  %}">Food</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'recipes:recipes-list'  %}">Recipes</a>
+                        <a class="nav-link" href="#">r</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -47,11 +47,13 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown link
+                           Recipes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="{% url 'recipes:recipes-list'  %}">List</a>
+                            <a class="dropdown-item" href="{% url 'recipes:recipes-create' %}">Add new Recipe</a>
+
+                            <a class="dropdown-item" href="{% url 'recipes:recipe-active-list' %}">Active Recipes</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>

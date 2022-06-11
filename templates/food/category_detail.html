@@ -2,7 +2,22 @@
 
 
 {% block content %}
-</br>
+
+  <div class="btn-group-sm">
+
+    {% for cate in categories %}
+
+    <a href="{% url 'food:category-datail' cate.id %}" class="btn  btn-info">
+
+
+      {{cate.name}}
+
+    </a>
+    {% endfor %}
+
+  </div>
+
+
 
 
 <div class="card" >
@@ -14,7 +29,12 @@
   </div>
   {% for ing in ings %}
 
-  {{ing}}<hr>
+  <a href="{% url 'food:ingredient-edit' ing.id %}"> {{ing}}  - {{ing.stock.quantity_as_float }} </a>
+
+
+    <a href="{% url 'food:ingredient-make-active' ing.id %}">make active</a>
+  <a href="{% url 'food:ingredient-make-inactive' ing.id %}">make inactive</a>
+  <hr>
 
 
   {% endfor %}

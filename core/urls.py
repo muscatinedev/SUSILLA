@@ -29,5 +29,6 @@ urlpatterns = [
     path('food/', include('food.urls', namespace='food')),
     path('recipes/', include('recipes.urls', namespace='recipes')),
     path('events/', include('events.urls', namespace='events')),
+    path('supply/', include('supply.urls', namespace='supply')),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

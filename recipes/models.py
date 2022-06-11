@@ -25,7 +25,7 @@ class Recipe(models.Model):
     directions = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True)
-    active = models.BooleanField(default=True)
+    active = models.BooleanField( null=True, blank=True)
 
     class Meta:
         ordering = ('name',)
@@ -82,7 +82,7 @@ class RecipeIngredient(models.Model):
     directions = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    active = models.BooleanField(default=True)
+
 
     def convert_to_system(self, system="mks"):
         if self.quantity_as_float is None:
@@ -131,38 +131,3 @@ class RecipeIngredient(models.Model):
 
 
 # TODO in the template if liquid unit uses crash converting in grams
-
-"""
-title = models.CharField(max_length=100, null=True)
-shortname = models.CharField(max_length=10)
-description = models.TextField(blank=True, default='')
-date_created = models.DateTimeField(auto_now_add=True, null=True)
-date_modify = models.DateTimeField(auto_now=True, null=True)
-image = models.ImageField(        null=True)
-platingimage = models.ImageField(null=True)
-servings = models.IntegerField(default=1)
-preptime = models.DurationField(blank=True, null=True)
-# if i use semilavorati
-preptimeUsingSemlav = models.DurationField(null=True, blank=True)
-# how to cook it
-cooking = models.TextField(blank=True, default='')
-# cookingProgram = models.ForeignKey()
-directions = models.TextField(blank=True, default='')
-# where did you get it
-origin = models.CharField(max_length=50, blank=True, null=True)
-# nutritional intended for serving
-
-
-
-"""
-
-"""
-class RecipeIngredient(models.Model):
-recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE,related_name='ingredients')
-ingredient = models.ForeignKey(Recipe, on_delete=models.PROTECT, related_name='recipe')
-
-
-"""
-
-# class RecipeImage():
-#     recipe = models.ForeignKey(Recipe)

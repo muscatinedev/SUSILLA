@@ -30,6 +30,15 @@ def recipe_list_view(request):
     print(User)
     return render(request, "recipes/list.html", context)
 
+def recipe_active_list(request ):
+    qs = Recipe.objects.filter(active=True)
+    context = {
+        "object_list": qs
+    }
+
+    print(User)
+    return render(request, "recipes/list.html", context)
+
 
 @login_required
 def recipe_detail_view(request, id=None):
@@ -84,8 +93,7 @@ def recipe_update_view(request, id=None):
             child.save()
 
         context['message'] = 'Data Saved'
-        # obj.user = request.user
-        # obj.save()
+
         return redirect(obj.get_absolute_url())
     return render(request, "recipes/create-update.html", context)
 

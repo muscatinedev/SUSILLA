@@ -3,17 +3,15 @@
 {% block title %}My f{% endblock %}
 {% block content %}
 
-<H2 class="center-block">listing Categories</H2>
-<div class="list-group">
-    {% for c in  object_list %}
-        <div class="list-group-item">
-            {{c.name}}
-        </div>
-    {% endfor %}
+{% for cate in categories %}
 
-</div>
+<a href="{% url 'food:category-datail' cate.id %}" class="btn  btn-info">
 
 
+    {{cate.name}}
+
+</a>
+{% endfor %}
 
 
 

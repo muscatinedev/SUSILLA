@@ -10,17 +10,37 @@ from food.models import Category, Ingredient, IngredientStock
 from .forms import IngredientForm, StockForm
 
 
-class CategoryListView(ListView):
-    model = Category
-    template_name = 'food/categories.html'
+
 
 
 def food_main_view(request):
     categories = Category.objects.all()
-    context = {'categories': categories}
+    context = {}
 
     return render(request, 'food/food.html', context)
 
+def ingredients(request):
+    categories = Category.objects.all()
+    ingredients = Ingredient.objects.all()
+
+    context = { 'categories': categories, 'ingredients':ingredients}
+
+    return render(request, 'food/ingredients.html', context)
+
+
+
+
+
+
+def category_list_view(request):
+
+
+
+    categories = Category.objects.all()
+
+    context = { 'categories': categories}
+
+    return render(request, "food/categories.html", context)
 
 def category_detail_view(request, id):
     obj = get_object_or_404(Category, pk=id)
@@ -36,6 +56,38 @@ def category_detail_view(request, id):
 
 def createCategory(request):
     return render(request, 'food/food.html', {})
+
+# INGREDIENTS
+#
+
+
+def ingredient_active_list(request):
+    ingredients = Ingredient.objects.filter(active=True)
+    categories = Category.objects.all()
+    context = {'ingredients': ingredients, 'categories': categories}
+    return render(request, 'food/ingredients.html', context)
+
+
+def ingredient_make_active(request, id=None):
+    obj = get_object_or_404(Ingredient, pk=id)
+    obj.active = True
+    obj.save()
+    ingredients = Ingredient.objects.filter(active=True)
+
+    context = {'ingredients': ingredients}
+
+    return render(request, 'food/ingredients.html', context)
+
+def ingredient_make_inactive(request, id=None):
+    obj = get_object_or_404(Ingredient, pk=id)
+    obj.active = False
+    obj.save()
+    ingredients = Ingredient.objects.filter(active=True)
+
+    context = {'ingredients': ingredients}
+
+    return render(request, 'food/ingredients.html', context)
+
 
 
 def createIngredient(request):
@@ -73,41 +125,6 @@ def editIngredient(request, id=None):
         return redirect(child.get_absolute_url())
     return render(request, 'food/edit_ing.html', {'form': form, 'form2': form2})
 
-
-def ingredient_list(request):
-    ingredients = Ingredient.objects.all()
-    categories = Category.objects.all()
-
-    context = {'ingredients': ingredients, 'categories': categories}
-    return render(request, 'food/ingredients.html', context)
-
-
-def ingredient_active_list(request):
-    ingredients = Ingredient.objects.filter(active=True)
-    categories = Category.objects.all()
-    context = {'ingredients': ingredients, 'categories': categories}
-    return render(request, 'food/ingredients.html', context)
-
-
-def ingredient_make_active(request, id=None):
-    obj = get_object_or_404(Ingredient, pk=id)
-    obj.active = True
-    obj.save()
-    ingredients = Ingredient.objects.filter(active=True)
-
-    context = {'ingredients': ingredients}
-
-    return render(request, 'food/ingredients.html', context)
-
-def ingredient_make_inactive(request, id=None):
-    obj = get_object_or_404(Ingredient, pk=id)
-    obj.active = False
-    obj.save()
-    ingredients = Ingredient.objects.filter(active=True)
-
-    context = {'ingredients': ingredients}
-
-    return render(request, 'food/ingredients.html', context)
 
 
 
@@ -184,3 +201,5 @@ def imping(request):
         print('saved {}'.format(ing))
     #  ing.save()
     return render(request, 'food/food.html', {})
+
+

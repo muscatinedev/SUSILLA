@@ -31,9 +31,12 @@
 
   <a href="{% url 'food:ingredient-edit' ing.id %}"> {{ing}}  - {{ing.stock.quantity_as_float }} </a>
 
-
+  {% if ing.active %}
+  <a class='info' href="{% url 'food:ingredient-make-inactive' ing.id %}">make inactive</a>
+  {% else %}
     <a href="{% url 'food:ingredient-make-active' ing.id %}">make active</a>
-  <a href="{% url 'food:ingredient-make-inactive' ing.id %}">make inactive</a>
+  {% endif %}
+
   <hr>
 
 

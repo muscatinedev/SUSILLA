@@ -4,15 +4,9 @@
 {% block content %}
 <h2>Food Management Page</h2>
 <br>
+<a href="{% url 'food:ingredients' %}" class="btn btn-primary">Ingredients</a>
 <a href="{% url 'food:ingredient-active-list' %}" class="btn btn-info">Must Have Ingredients</a>
 <a href="{% url 'food:ingredient-create' %}" class="btn btn-warning">New Ingredient</a>
-<p >
-    {% for cate in categories %}
-
-    <a href="{% url 'food:category-datail' cate.id %}">
-
-        {{cate.name}}
-    </a>
 
 
 
@@ -20,7 +14,7 @@
 
 
 
-    {% endfor %}
+
 </p>
 
 

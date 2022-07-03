@@ -46,28 +46,19 @@ INSTALLED_APPS = [
     'accounts',
     'menues',
     'supply',
-    'widget_tweaks',
+
     'django_extensions',
 
+    'widget_tweaks',
 
 ]
 
 ROOT_URLCONF = 'urls'
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    '/var/www/static/',
-
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -96,7 +87,7 @@ TEMPLATES = [
         },
     },
 ]
-STATIC_ROOT = '../static'
+
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -158,10 +149,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static'  ]
+
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/MEDIA/'
 

@@ -2,21 +2,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
+from . import views
 from .views import food_main_view, category_list_view, category_detail_view, ingredient_detail_view, \
     ingredient_make_active, ingredient_make_inactive, createIngredient, editIngredient, ingredient_active_list, \
-    ingredients
+    ingredients_main_view
 
 app_name='food'
 
 urlpatterns = [
     path('', food_main_view, name='foodmain'),
-    path('ingredients/', ingredients, name='ingredients'),
-
-
-
-
-
-    
+    path('ingredients/', ingredients_main_view, name='ingredients'),
 
     path('category/', category_list_view, name='category-list'),
     path('category/<int:id>', category_detail_view, name='category-datail'),
@@ -33,6 +29,7 @@ urlpatterns = [
 
 
 
+
     # path('ing_import/', imping),
     # path('cat_import/', impcat),
 
@@ -40,3 +37,9 @@ urlpatterns = [
 
 
 ]
+
+htmx_urlpatterns=[
+    path('check_ingname/', views.check_ingname, name='check_ingname'),
+
+]
+urlpatterns +=htmx_urlpatterns

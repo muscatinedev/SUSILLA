@@ -25,12 +25,12 @@ class IngredientStock(models.Model):
 class Ingredient(models.Model):
     name = models.CharField(max_length=80)
     category = models.ForeignKey(Category, related_name='ingredients', on_delete=models.CASCADE)
-    amido = models.FloatField(null=True, default=0)
-    calorie = models.FloatField(null=True, default=0)
-    glucidi = models.FloatField(null=True, default=0)
-    proteine = models.FloatField(null=True, default=0)
-    lipidi = models.FloatField(null=True, default=0)
-    amido = models.FloatField(null=True, default=0)
+    amido = models.FloatField(null=True, default=0, blank=True)
+    calorie = models.FloatField(null=True, default=0, blank=True)
+    glucidi = models.FloatField(null=True, default=0, blank=True)
+    proteine = models.FloatField(null=True, default=0, blank=True)
+    lipidi = models.FloatField(null=True, default=0, blank=True)
+
     active= models.BooleanField(default=False)
     stock = models.OneToOneField(IngredientStock, related_name='ingredients', on_delete=models.CASCADE, null=True, blank=True)
     class Meta:

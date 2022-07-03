@@ -1,5 +1,6 @@
 import time
 import pint
+from django.http import HttpResponse
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.list import ListView
@@ -9,17 +10,17 @@ from openpyxl import Workbook, load_workbook
 from food.models import Category, Ingredient, IngredientStock
 from .forms import IngredientForm, StockForm
 
-
-
-
-
 def food_main_view(request):
     categories = Category.objects.all()
     context = {}
 
     return render(request, 'food/food.html', context)
 
-def ingredients(request):
+
+
+
+
+def ingredients_main_view(request):
     categories = Category.objects.all()
     ingredients = Ingredient.objects.all()
 
@@ -28,13 +29,42 @@ def ingredients(request):
     return render(request, 'food/ingredients.html', context)
 
 
+def createIngredient(request):
+    form = IngredientForm(request.POST or None)
+    form2 = StockForm(request.POST or None)
+    for field in form:
+        print("Field Error:", field.name,  field.errors)
+    for field in form2:
+        print("Field Error:", field.name,  field.errors)
+
+    if form.is_valid() and form2.is_valid():
+        parent = form2.save(commit=False)
+        parent.save()
 
 
+        child = form.save(commit=False)
+
+        child.stock = parent
+        child.save()
+
+        return redirect(child.get_absolute_url())
+    else:
+        print("not valid")
+    return render(request, 'food/create_ing.html', {'form': form, 'form2': form2})
+
+
+
+
+
+def check_ingname(request):
+    ingname = request.POST.get('name')
+    if Ingredient.objects.filter(name__iexact=ingname).exists():
+        return HttpResponse("<div id='name-error' class='error'>This name exist</div>")
+    else:
+        return HttpResponse("<div id='name-error' class='success'> This name OK</div>")
 
 
 def category_list_view(request):
-
-
 
     categories = Category.objects.all()
 
@@ -90,21 +120,7 @@ def ingredient_make_inactive(request, id=None):
 
 
 
-def createIngredient(request):
-    form = IngredientForm(request.POST or None)
-    form2 = StockForm(request.POST or None)
-    if form.is_valid() and form2.is_valid():
-        parent = form2.save(commit=False)
-        parent.save()
-        print('pa', parent.id, type(parent))
 
-        child = form.save(commit=False)
-        print('cc', child.id, type(child))
-        child.stock = parent
-        child.save()
-
-        return redirect(child.get_absolute_url())
-    return render(request, 'food/create_ing.html', {'form': form, 'form2': form2})
 
 
 def editIngredient(request, id=None):

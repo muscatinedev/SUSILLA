@@ -1,17 +1,95 @@
+
 {% extends "base.html" %}
-{% load static %}
+
+{% load widget_tweaks %}
 {% block title %}My f{% endblock %}
 {% block content %}
 
 
 
 <form method="post" action=".">
+    {% csrf_token %}
 
 
-            {% csrf_token %}
-            {{form.as_p}}
-            {{form2.as_p}}
+    {% render_field form.active.label   %}
+        {% render_field form.active  %}
+
+        <br>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            {% render_field form.category.label   %}
+            {% render_field form.category class="form-control "  %}
+
+        </div>
+        <div class="col-sm-6">
+            {% render_field form.name.label   %}
+            {% render_field form.name class="form-control " hx-post="/food/check_ingname/" hx-swap="outerhtml" hx-trigger="keyup delay:2s" hx-target="#name-error" %}
+            <div id="name-error" ></div>
+        </div>
+
     </div>
+<br>
+
+        <div class="row">
+
+    <div class="col-sm-2">
+
+        {% render_field form.calorie.label   %}
+
+        {% render_field form.calorie  %}
+
+
+    </div>
+
+    <div class="col-sm-2">
+
+        {% render_field form.glucidi.label   %}
+
+
+        {% render_field form.glucidi   %}
+
+
+    </div>
+
+    <div class="col-sm-2">
+
+        {% render_field form.proteine.label   %}
+        {% render_field form.proteine   %}
+
+    </div>
+    <div class="col-sm-2">
+
+        {% render_field form.lipidi.label   %}
+        {% render_field form.lipidi   %}
+
+    </div>
+    <div class="col-sm-2">
+
+
+        {% render_field form.amido.label   %}
+        {% render_field form.amido   %}
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+        <div class="card">
+            <div class="card-title">Stok</div>
+            <div class="card-body">
+                {{form2.as_p}}
+            </div>
+        </div>
+
 
     <input type="submit" value="Save" class="btn btn-primary">
 

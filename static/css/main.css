@@ -27,3 +27,20 @@
     border: 3px solid crimson;
 
 }
+
+.mt-num{
+    width: 100px;
+    border-bottom: 1px solid crimson;
+    color: darkkhaki;
+}
+
+.success{
+
+    color: green;
+    transition: all ease-in 2s;
+}
+.error{
+
+    color: red;
+    transition: all ease-in 2s;
+}

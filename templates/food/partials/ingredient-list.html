@@ -1,7 +1,13 @@
 {% if ingredients %}
 <ul>
     {% for ingredient in ingredients %}
-    <li>{{ ingredient.name }}</li>
+    <li class="list-group-item d-flex justify-content-between align-items-center" >{{ ingredient.name }}
+        <span class=" badge-danger badge-pill"
+              style="cursor: pointer;"
+              hx-delete="{% url 'food:delete-ingredient' ingredient.pk %}"
+              hx-target="#ingredient-list"
+              hx-confirm="Are you sure you wish to delete?">X</span>
+    </li>
     {% endfor %}
 </ul>
 {% else %}

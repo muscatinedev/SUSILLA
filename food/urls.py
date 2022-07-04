@@ -38,10 +38,10 @@ urlpatterns = [
 
 ]
 
-htmx_urlpatterns=[
+htmx_urlpatterns = [
     path('check_ingname/', views.check_ingname, name='check_ingname'),
     path('add-ingredient/', views.add_ing, name='add-ing'),
-
+    path('delete_ingredient/<int:pk>', views.del_ing, name='delete-ingredient'),
 
 ]
 urlpatterns +=htmx_urlpatterns

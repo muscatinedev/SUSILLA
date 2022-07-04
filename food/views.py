@@ -34,6 +34,19 @@ def add_ing(request):
     return render(request, 'food/partials/ingredient-list.html', {'ingredients':ingredients})
 
 
+def del_ing(request, pk):
+    ing=Ingredient.objects.get(id=pk)
+    ing.delete()
+
+    ingredients= Ingredient.objects.all()
+    return render(request, 'food/partials/ingredient-list.html', {'ingredients':ingredients})
+
+
+
+
+
+
+
 
 def ingredients_main_view(request):
     categories = Category.objects.all()

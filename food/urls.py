@@ -6,14 +6,14 @@ from django.urls import path, include
 from . import views
 from .views import food_main_view, category_list_view, category_detail_view, ingredient_detail_view, \
     ingredient_make_active, ingredient_make_inactive, createIngredient, editIngredient, ingredient_active_list, \
-    ingredients_main_view
+    ingredients_main_view, IngredientiList
 
 app_name='food'
 
 urlpatterns = [
     path('', food_main_view, name='foodmain'),
     path('ingredients/', ingredients_main_view, name='ingredients'),
-
+    path('ingredienti/', IngredientiList.as_view(), name='ingredienti-list'),
     path('category/', category_list_view, name='category-list'),
     path('category/<int:id>', category_detail_view, name='category-datail'),
 
@@ -40,6 +40,8 @@ urlpatterns = [
 
 htmx_urlpatterns=[
     path('check_ingname/', views.check_ingname, name='check_ingname'),
+    path('add-ingredient/', views.add_ing, name='add-ing'),
+
 
 ]
 urlpatterns +=htmx_urlpatterns

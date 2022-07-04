@@ -16,7 +16,22 @@ def food_main_view(request):
 
     return render(request, 'food/food.html', context)
 
+class IngredientiList(ListView):
+    template_name = 'food/ingredienti.html'
+    model = Ingredient
+    context_object_name = 'ingredients'
 
+    def get_queryset(self):
+        return Ingredient.objects.all()
+
+
+def add_ing(request):
+    name= request.POST.get('ingname')
+    category = Category.objects.get(id=1)
+    ing= Ingredient.objects.create(name=name, category=category)
+    # return template
+    ingredients = Ingredient.objects.all()
+    return render(request, 'food/partials/ingredient-list.html', {'ingredients':ingredients})
 
 
 

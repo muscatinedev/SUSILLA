@@ -11,9 +11,12 @@ from .views import food_main_view, category_list_view, category_detail_view, ing
 app_name='food'
 
 urlpatterns = [
-    path('', food_main_view, name='foodmain'),
-    path('ingredients/', ingredients_main_view, name='ingredients'),
-    path('ingredienti/', IngredientiList.as_view(), name='ingredienti-list'),
+    path('', food_main_view, name='food-main'),
+
+    path('ingredients/', ingredients_main_view, name='ingredient-main'),
+
+
+
     path('category/', category_list_view, name='category-list'),
     path('category/<int:id>', category_detail_view, name='category-datail'),
 
@@ -42,6 +45,9 @@ htmx_urlpatterns = [
     path('check_ingname/', views.check_ingname, name='check_ingname'),
     path('add-ingredient/', views.add_ing, name='add-ing'),
     path('delete_ingredient/<int:pk>', views.del_ing, name='delete-ingredient'),
+    path('ingredient/category<int:pk>', views.cat_ing_list, name='get-cat-ingredients'),
+
+
 
 ]
 urlpatterns +=htmx_urlpatterns

@@ -1,0 +1,24 @@
+{% if tasks %}
+    <ul class="list-group">
+        {% for task in tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{task.name}}
+                <span class="btn btn-sm  btn-danger"
+                style="cursor: pointer;"
+                hx-delete="{% url 'main:delete-task' task.pk %}" hx-target="#tasklist"
+                      hx-confirm = "Sure?"
+                >X</span>
+            </li>
+
+
+        {% endfor %}
+
+    </ul>
+
+
+
+{% else %}
+   <p>
+       No Task to do!
+   </p>
+{% endif %}

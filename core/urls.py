@@ -22,10 +22,11 @@ from accounts.views import login_view,logout_view,register_view
 
 
 urlpatterns = [
+    path('', include('main.urls', namespace='main')),
     path('admin/', admin.site.urls),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
-    path('', include('main.urls', namespace='main')),
+
     path('food/', include('food.urls', namespace='food')),
     path('recipes/', include('recipes.urls', namespace='recipes')),
     path('events/', include('events.urls', namespace='events')),

@@ -25,7 +25,7 @@ class Recipe(models.Model):
     directions = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True)
-    active = models.BooleanField( null=True, blank=True)
+    active = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('name',)

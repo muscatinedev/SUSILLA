@@ -40,12 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_htmx',
     'food',
-    'recipes',
     'main',
+
+
+       
+    'recipes',
+
     'events',
     'accounts',
     'menues',
     'supply',
+
+ 
 
     'django_extensions',
 

@@ -12,9 +12,58 @@ from .forms import IngredientForm, StockForm
 
 def food_main_view(request):
     categories = Category.objects.all()
-    context = {}
+    ingredients= Ingredient.objects.none()
+    context = {'categories':categories, 'ingredients':ingredients}
 
     return render(request, 'food/food.html', context)
+
+def ingredients_main_view(request):
+    categories = Category.objects.all()
+    ingredients = Ingredient.objects.none()
+
+    context = { 'categories': categories, 'ingredients':ingredients}
+
+    return render(request, 'food/ingredients.html', context)
+
+def cat_ing_list(request, pk):
+
+    category=Category.objects.get(id=pk)
+
+    ingredients=Ingredient.objects.filter(category=category)
+
+
+    return render(request, 'food/partials/ingredient-list.html', {'ingredients': ingredients})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class IngredientiList(ListView):
     template_name = 'food/ingredienti.html'
@@ -48,13 +97,6 @@ def del_ing(request, pk):
 
 
 
-def ingredients_main_view(request):
-    categories = Category.objects.all()
-    ingredients = Ingredient.objects.all()
-
-    context = { 'categories': categories, 'ingredients':ingredients}
-
-    return render(request, 'food/ingredients.html', context)
 
 
 def createIngredient(request):

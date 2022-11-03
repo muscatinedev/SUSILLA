@@ -1,61 +1,34 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}My f{% endblock %}
+{% block title %}Ingredients - main page {% endblock %}
 {% block content %}
-<div class="card">
-  <a href="{% url 'food:ingredients' %}" class="btn btn-primary">Ingredients</a>
-  <a href="{% url 'food:ingredient-active-list' %}" class="btn btn-info">Must Have Ingredients</a>
-  <a href="{% url 'food:ingredient-create' %}" class="btn btn-warning">New Ingredient</a>
-</div>
 
 
-<div class="row">
-  <div class="col-sm-3">
-    <ul>
-
-      {% for cate in categories %}
-  <li>
-    <a href="{% url 'food:category-datail' cate.id %}" class="warning">
-
-      {{cate.name}}
-
-    </a>
-
-  </li>
-
-
-
-      {% endfor %}
-
-
-    </ul>
-  </div>
-  <div class="col">
-
-    <div id="ingredients_result">
-      <h2>ing resulr</h2>
-
-
-      {% for ing in ingredients %}
-
-      <a href="{% url 'food:ingredient-edit' ing.id %}"> {{ing}}  - {{ing.stock.quantity_as_float }} </a>
-
-      {% if ing.active %}
-      <a class='info' href="{% url 'food:ingredient-make-inactive' ing.id %}">make inactive</a>
-      {% else %}
-      <a href="{% url 'food:ingredient-make-active' ing.id %}">make active</a>
-      {% endif %}
-      <br>
-      {% endfor %}
-      <hr>
-
-
-
+<div class ='row'>
+  <div class="col-md-3">
+    <div id="sideBar">
+      {% include 'food/partials/ingredient_side_nav.html' %}
 
     </div>
-
   </div>
 </div>
+<div class ='row'>
+  <div class="col-md-3">
+    {% include 'food/partials/categorylist.html' %}
+  </div>
+  <div class="col-md-9 ">
+    <div id="searchResult">
+      {% include 'food/partials/ingredient-list.html' %}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 
 

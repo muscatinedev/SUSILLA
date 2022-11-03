@@ -17,7 +17,7 @@ class RecipeForm(forms.ModelForm):
         "class": "form-control" ,"rows": 6, "placeholder": "Directions"}))
     description = forms.CharField(widget=forms.Textarea(attrs={
         "class": "form-control" ,"rows": 3, "placeholder": "Description"}))
-    active = forms.BooleanField( required=False)
+    active = forms.BooleanField(initial=False)
 
     class Meta:
         model = Recipe

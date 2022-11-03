@@ -3,8 +3,34 @@
 
 {% block content %}
 
-<div class="manin">
+<div class="row">
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header">
+                <h6>Tasks for {{user}}</h6>
+            </div>
+            <div class="card-body">
+                <div id="tasklist">
+                    <!--    qui inietto il fragment htm proveniente da htmx-->
+                    {% include 'main/partials/task_list.html' %}
+                </div>
 
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <form class="d-flex align-items-center">
+            {% csrf_token %}
+            <input type="text" name="taskname" class="form-control-sm mr-2" placeholder="Enter the task" />
+            <button hx-post="{% url 'main:add-task' %}"   hx-target="#tasklist"   type="submit" class="btn btn-success btn-sm">Add Task</button>
+        </form>
+
+
+
+
+
+
+    </div>
 
 </div>
 

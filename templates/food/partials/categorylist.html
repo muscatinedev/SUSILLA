@@ -1,0 +1,7 @@
+<ul style="list-style: none;">
+  <h6>Categories</h6>
+
+  {% for cate in categories %}
+  <li style="cursor: pointer; font-weight: bold; " hx-post="{% url 'food:get-cat-ingredients' cate.id%}" hx-trigger="click" hx-target="#searchResult" hx-swap="outerhtml">{{cate.name}}</li>
+  {% endfor %}
+</ul>
